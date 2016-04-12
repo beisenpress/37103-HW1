@@ -34,19 +34,3 @@ mayo_DF$price = mayo_DF$sales_dollars/mayo_DF$sales_units
 
 stats_1 <- describeBy(mayo_DF$price, list(mayo_DF$product, mayo_DF$market), mat=TRUE)
 
-markets <- unique(mayo_DF$market)
-products <- unique(mayo_DF$product)
-
-stats <- data.frame()
-k = 0
-for (i in 1:2){
-  for (j in 1:2){
-    k = k + 1
-    stats[k,1] <- markets[i]
-    stats[k,2] <- products[j]
-    stats[k,3] <- mean(mayo_DF$price[which((mayo_DF$market == markets[i] & mayo_DF$product == products[j]))])
-    stats[k,4] <- median(mayo_DF$price[which((mayo_DF$market == markets[i] & mayo_DF$product == products[j]))])
-    stats[k,5] <- sd(mayo_DF$price[which((mayo_DF$market == markets[i] & mayo_DF$product == products[j]))])
-  }
-}
-
