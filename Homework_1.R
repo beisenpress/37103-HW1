@@ -28,12 +28,13 @@ describeBy(mayo_DF$sales_units, mayo_DF$product)
 # Create price variable
 mayo_DF$price = mayo_DF$sales_dollars/mayo_DF$sales_units
 
-### 2.1 ###
+### Question 1 ###
 # The price variable represents the average of actual sale prices over the week. It includes discounts.
 
 stats_1 <- describeBy(mayo_DF$price, list(mayo_DF$product, mayo_DF$market), mat=TRUE)
 write.csv(stats_1,"Price Statistics.csv")
 
+### Question 2 ###
 # The means are fairly similar across all markets.
 # Jewel-Osco prices are higher than the Kraft Central region for both products.
 # There is more price variation in Jewel-Osco than the whole region. This is because the whole region has multiple chains.
@@ -54,7 +55,7 @@ xyplot(price ~ week | product + market, data = mayo_DF,
        xlab = "Week", ylab = "Price")
 
 # Question 3 #
-# The price at Jewl is more variable.  This is likely because of store specific sales or promotions.  
+# The price at Jewel is more variable.  This is likely because of store specific sales or promotions.  
 
 ###########################################################
 ########################### Part 4 ########################
@@ -65,7 +66,7 @@ xyplot(sales_units ~ price | product + market, data = mayo_DF,
        par.settings = list(strip.background = list(col = "gray95")),
        xlab = "Price", ylab = "Units")
 
-# Question 3 #
+# Question 4 #
 # There appears to be a slight negative relationship
 # The data is bunched in the lower right corner, so it is hard to see a relationship.
 
@@ -99,8 +100,8 @@ summary(reg1.Central.K)
 
 ## Question 6 ##
 
-# We cannot model a simultanious price increase because these equations do not include cross price elasticities.
-# We can only estimate the impact of each price increse in isolation.
+# We cannot model a simultaneous price increase because these equations do not include cross price elasticities.
+# We can only estimate the impact of each price increase in isolation.
 
 # The beta coefficient for Helmans at Jewel is -4.584. 
 # Using the log approximation, this implies a price increase of 10% will decrease sales by 10 * 4.584 = 45.84%
